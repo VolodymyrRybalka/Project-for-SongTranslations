@@ -1,0 +1,28 @@
+USE [SongTranslations]
+GO
+
+/****** Object:  Table [dbo].[Singer]    Script Date: 02.06.2016 2:21:39 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Singer](
+	[ID] [int] NOT NULL,
+	[Name] [nchar](10) NULL,
+	[TranslationID] [int] NULL,
+ CONSTRAINT [PK_Singer] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[Singer]  WITH CHECK ADD  CONSTRAINT [FK_Singer_Translations] FOREIGN KEY([TranslationID])
+REFERENCES [dbo].[Translations] ([ID])
+GO
+
+ALTER TABLE [dbo].[Singer] CHECK CONSTRAINT [FK_Singer_Translations]
+GO
