@@ -1,0 +1,53 @@
+USE [SongTranslations]
+GO
+
+/****** Object:  Table [dbo].[Request]    Script Date: 02.06.2016 2:20:04 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Request](
+	[ID] [int] NOT NULL,
+	[Number] [int] NULL,
+	[SingerID] [int] NULL,
+	[AlbumID] [int] NULL,
+	[SongID] [int] NULL,
+	[TranslationID] [int] NULL,
+ CONSTRAINT [PK_Request] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[Request]  WITH CHECK ADD  CONSTRAINT [FK_Request_Albums] FOREIGN KEY([AlbumID])
+REFERENCES [dbo].[Albums] ([ID])
+GO
+
+ALTER TABLE [dbo].[Request] CHECK CONSTRAINT [FK_Request_Albums]
+GO
+
+ALTER TABLE [dbo].[Request]  WITH CHECK ADD  CONSTRAINT [FK_Request_Singer] FOREIGN KEY([SingerID])
+REFERENCES [dbo].[Singer] ([ID])
+GO
+
+ALTER TABLE [dbo].[Request] CHECK CONSTRAINT [FK_Request_Singer]
+GO
+
+ALTER TABLE [dbo].[Request]  WITH CHECK ADD  CONSTRAINT [FK_Request_Song] FOREIGN KEY([SongID])
+REFERENCES [dbo].[Song] ([ID])
+GO
+
+ALTER TABLE [dbo].[Request] CHECK CONSTRAINT [FK_Request_Song]
+GO
+
+ALTER TABLE [dbo].[Request]  WITH CHECK ADD  CONSTRAINT [FK_Request_Translations] FOREIGN KEY([TranslationID])
+REFERENCES [dbo].[Translations] ([ID])
+GO
+
+ALTER TABLE [dbo].[Request] CHECK CONSTRAINT [FK_Request_Translations]
+GO
+
