@@ -1,0 +1,30 @@
+USE [SongTranslations]
+GO
+
+/****** Object:  Table [dbo].[Idioms]    Script Date: 02.06.2016 2:18:48 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Idioms](
+	[ID] [int] NOT NULL,
+	[Idiom] [nchar](10) NULL,
+	[TranslationID] [int] NULL,
+ CONSTRAINT [PK_Idioms] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[Idioms]  WITH CHECK ADD  CONSTRAINT [FK_Idioms_Translations] FOREIGN KEY([TranslationID])
+REFERENCES [dbo].[Translations] ([ID])
+GO
+
+ALTER TABLE [dbo].[Idioms] CHECK CONSTRAINT [FK_Idioms_Translations]
+GO
+
+
